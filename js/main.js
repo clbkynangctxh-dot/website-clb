@@ -15,6 +15,9 @@
  */
 
 document.addEventListener("DOMContentLoaded", function () {
+  // 0. Khởi tạo Màn hình chờ Logo CLB (Preloader)
+  khoiTaoManHinhCho();
+
   // 1. Khởi tạo menu 3 gạch trên điện thoại (nếu có)
   khoiTaoMenuDiDong();
 
@@ -113,7 +116,12 @@ function taoThe4BanChuyenMon() {
     const linkBtn = document.createElement("a");
     linkBtn.href = ban.duongDan;
     linkBtn.className = "btn btn-secondary ban-card-btn";
-    linkBtn.textContent = "Xem chi tiết JD & Quyền lợi ➔";
+    linkBtn.textContent =
+      typeof CONFIG !== "undefined" &&
+      CONFIG.CHU_NUT_BAM &&
+      CONFIG.CHU_NUT_BAM.nutXemChiTietBan
+        ? CONFIG.CHU_NUT_BAM.nutXemChiTietBan
+        : "Xem chi tiết JD & Quyền lợi ➔";
 
     actionDiv.appendChild(linkBtn);
 
@@ -241,6 +249,25 @@ function khoiTaoTrangChiTietBan() {
   if (elCtaQuestion) {
     elCtaQuestion.textContent = "Bạn đã sẵn sàng thử sức tại " + ban.ten + "?";
   }
+
+  // 8. Đồng bộ chữ các nút bấm trên trang con từ CONFIG.CHU_NUT_BAM
+  if (typeof CONFIG !== "undefined" && CONFIG.CHU_NUT_BAM) {
+    if (CONFIG.CHU_NUT_BAM.nutQuayVeTrangChu) {
+      document.querySelectorAll(".back-home-btn").forEach(function (btn) {
+        btn.textContent = CONFIG.CHU_NUT_BAM.nutQuayVeTrangChu;
+      });
+    }
+
+    if (CONFIG.CHU_NUT_BAM.nutXemDrive && elDriveBtn) {
+      elDriveBtn.textContent = CONFIG.CHU_NUT_BAM.nutXemDrive;
+    }
+
+    if (CONFIG.CHU_NUT_BAM.nutDangKyVaoBan) {
+      document.querySelectorAll(".ban-cta-btn").forEach(function (btn) {
+        btn.textContent = CONFIG.CHU_NUT_BAM.nutDangKyVaoBan;
+      });
+    }
+  }
 }
 
 /**
@@ -308,6 +335,14 @@ function khoiTaoDongHoDemNguoc() {
  */
 function dongBoThongTinChung() {
   if (typeof CONFIG === "undefined") return;
+
+  // Đồng bộ Tên CLB ở góc trái trên cùng (Thanh điều hướng)
+  if (CONFIG.TEN_CLB_NAVBAR) {
+    const brandEls = document.querySelectorAll(".navbar-brand-name");
+    brandEls.forEach(function (el) {
+      el.textContent = CONFIG.TEN_CLB_NAVBAR;
+    });
+  }
 
   if (CONFIG.CHI_TIEU_TUYEN) {
     const chiTieuEls = document.querySelectorAll(".js-chi-tieu");
@@ -391,6 +426,333 @@ function dongBoThongTinChung() {
       document.querySelectorAll(".footer-bottom p").forEach(function (el) {
         el.textContent = CONFIG.FOOTER.dongGhiChuDayTrang;
       });
+    }
+  }
+
+  // Đồng bộ chữ trên các nút bấm từ CONFIG.CHU_NUT_BAM
+  if (CONFIG.CHU_NUT_BAM) {
+    const cnb = CONFIG.CHU_NUT_BAM;
+
+    if (cnb.nutTrenMenu) {
+      document
+        .querySelectorAll(".navbar .js-btn-apply, .mobile-nav .js-btn-apply")
+        .forEach(function (btn) {
+          btn.textContent = cnb.nutTrenMenu;
+        });
+    }
+
+    if (cnb.nutChinhHero) {
+      const heroBtn = document.querySelector(".hero-actions .btn-cta");
+      if (heroBtn) heroBtn.textContent = cnb.nutChinhHero;
+    }
+
+    if (cnb.nutPhuHero) {
+      const heroSecBtn = document.querySelector(".hero-actions .btn-secondary");
+      if (heroSecBtn) heroSecBtn.textContent = cnb.nutPhuHero;
+    }
+
+    if (cnb.nutDatCauHoi) {
+      const faqBtn = document.querySelector(".faq-lead-box .btn");
+      if (faqBtn) faqBtn.textContent = cnb.nutDatCauHoi;
+    }
+
+    if (cnb.thongBaoHetHanVong1) {
+      const expMsg = document.getElementById("countdown-expired-msg");
+      if (expMsg) expMsg.textContent = cnb.thongBaoHetHanVong1;
+    }
+  }
+
+  // Đồng bộ tiêu đề & thông điệp ngắn đầu trang (Hero) từ CONFIG.THONG_TIN_HERO
+  if (CONFIG.THONG_TIN_HERO) {
+    if (CONFIG.THONG_TIN_HERO.tieuDeChinh) {
+      const elHeadline = document.getElementById("hero-headline");
+      if (elHeadline) elHeadline.textContent = CONFIG.THONG_TIN_HERO.tieuDeChinh;
+    }
+
+    if (CONFIG.THONG_TIN_HERO.thongDiepNgan) {
+      const elSub = document.querySelector(".hero-subtitle");
+      if (elSub) elSub.textContent = CONFIG.THONG_TIN_HERO.thongDiepNgan;
+    }
+  }
+
+  // Đồng bộ mục Những câu hỏi thường gặp (FAQ) từ CONFIG.FAQ
+  if (CONFIG.FAQ) {
+    const faq = CONFIG.FAQ;
+    const tagEl = document.querySelector(".faq-container .section-tag");
+    if (tagEl && faq.theMuc) {
+      tagEl.textContent = faq.theMuc;
+    }
+
+    const headingEl = document.getElementById("faq-heading");
+    if (headingEl && faq.tieuDe) {
+      headingEl.textContent = faq.tieuDe;
+    }
+
+    const leadEl = document.querySelector(".faq-lead-text");
+    if (leadEl && faq.loiDan) {
+      leadEl.textContent = faq.loiDan;
+    }
+
+    const listEl = document.querySelector(".faq-list");
+    if (listEl && Array.isArray(faq.danhSach) && faq.danhSach.length > 0) {
+      listEl.innerHTML = "";
+      faq.danhSach.forEach(function (item) {
+        const details = document.createElement("details");
+        details.className = "faq-item scroll-reveal";
+
+        const summary = document.createElement("summary");
+        summary.className = "faq-question";
+
+        const spanText = document.createElement("span");
+        spanText.textContent = item.cauHoi || "";
+
+        const spanPlus = document.createElement("span");
+        spanPlus.className = "faq-plus-icon";
+        spanPlus.setAttribute("aria-hidden", "true");
+        spanPlus.textContent = "+";
+
+        summary.appendChild(spanText);
+        summary.appendChild(spanPlus);
+
+        const answerDiv = document.createElement("div");
+        answerDiv.className = "faq-answer";
+
+        if (item.moDau) {
+          const p = document.createElement("p");
+          p.textContent = item.moDau;
+          answerDiv.appendChild(p);
+        }
+
+        if (Array.isArray(item.cacYChinh) && item.cacYChinh.length > 0) {
+          const ul = document.createElement("ul");
+          ul.className = "faq-bullet-list";
+          item.cacYChinh.forEach(function (y) {
+            const li = document.createElement("li");
+            const colonIndex = y.indexOf(":");
+            if (colonIndex > 0) {
+              const strong = document.createElement("strong");
+              strong.textContent = y.substring(0, colonIndex + 1);
+              li.appendChild(strong);
+              li.appendChild(document.createTextNode(y.substring(colonIndex + 1)));
+            } else {
+              li.textContent = y;
+            }
+            ul.appendChild(li);
+          });
+          answerDiv.appendChild(ul);
+        }
+
+        if (item.cauTraLoi) {
+          const p = document.createElement("p");
+          p.textContent = item.cauTraLoi;
+          answerDiv.appendChild(p);
+        }
+
+        details.appendChild(summary);
+        details.appendChild(answerDiv);
+        listEl.appendChild(details);
+      });
+    }
+  }
+
+  // Đồng bộ nội dung Giới thiệu CLB, Khung ảnh giới thiệu & Phương châm từ CONFIG.GIOI_THIEU_CLB
+  if (CONFIG.GIOI_THIEU_CLB) {
+    const gt = CONFIG.GIOI_THIEU_CLB;
+
+    const elSubHeading = document.getElementById("about-sub-heading");
+    if (elSubHeading && gt.tieuDePhu) {
+      elSubHeading.textContent = gt.tieuDePhu;
+    }
+
+    const elQuote = document.getElementById("about-quote");
+    if (elQuote && gt.doanGioiThieu) {
+      elQuote.textContent = gt.doanGioiThieu;
+    }
+
+    const elMottoHeading = document.getElementById("motto-heading");
+    if (elMottoHeading && gt.tieuDePhuongCham) {
+      elMottoHeading.textContent = gt.tieuDePhuongCham;
+    }
+
+    const elMottoGrid = document.getElementById("motto-grid");
+    if (elMottoGrid && Array.isArray(gt.phuongCham) && gt.phuongCham.length > 0) {
+      elMottoGrid.innerHTML = "";
+      gt.phuongCham.forEach(function (item) {
+        const card = document.createElement("div");
+        card.className = "motto-card";
+
+        const span = document.createElement("span");
+        span.className = "motto-text";
+        span.textContent = item;
+
+        card.appendChild(span);
+        elMottoGrid.appendChild(card);
+      });
+    }
+
+    // Khởi tạo khung trình chiếu ảnh hoạt động từ thư mục assets/gioi-thieu/
+    khoiTaoKhungAnhGioiThieu(gt.danhSachAnh);
+  }
+}
+
+/**
+ * Hàm tải và trình chiếu các ảnh trong thư mục assets/gioi-thieu/ bên cạnh phần Giới thiệu CLB
+ */
+function khoiTaoKhungAnhGioiThieu(danhSachKhaiBao) {
+  const sliderEl = document.getElementById("about-gallery-slider");
+  const stageEl = document.getElementById("about-gallery-stage");
+  const prevBtn = document.getElementById("about-gallery-prev");
+  const nextBtn = document.getElementById("about-gallery-next");
+  const dotsEl = document.getElementById("about-gallery-dots");
+  const placeholderEl = document.getElementById("about-gallery-placeholder");
+
+  if (!sliderEl || !stageEl || !placeholderEl) return;
+
+  // Chuẩn hóa đường dẫn về thư mục assets/gioi-thieu/
+  function chuanHoaDuongDan(tenFile) {
+    const trimmed = String(tenFile || "").trim();
+    if (!trimmed) return "";
+    if (
+      trimmed.startsWith("http://") ||
+      trimmed.startsWith("https://") ||
+      trimmed.startsWith("assets/") ||
+      trimmed.startsWith("./assets/")
+    ) {
+      return trimmed;
+    }
+    return "assets/gioi-thieu/" + trimmed;
+  }
+
+  // Nếu người dùng chưa khai báo tên file trong config.js, tự động dò các tên chuẩn trong assets/gioi-thieu/
+  // (Bao gồm cả trường hợp Windows ẩn đuôi file khiến người dùng đặt tên bị lặp đuôi như anh-1.png.jpg, anh-1.jpg.jpg)
+  let danhSachThu = [];
+  if (Array.isArray(danhSachKhaiBao) && danhSachKhaiBao.length > 0) {
+    danhSachThu = danhSachKhaiBao.map(chuanHoaDuongDan).filter(Boolean);
+  } else {
+    const cacDuoiPhoBien = [
+      ".jpg",
+      ".png",
+      ".jpeg",
+      ".webp",
+      ".png.jpg",
+      ".jpg.jpg",
+      ".jpg.png",
+      ".png.png"
+    ];
+    for (let i = 1; i <= 10; i++) {
+      cacDuoiPhoBien.forEach(function (duoi) {
+        danhSachThu.push("assets/gioi-thieu/anh-" + i + duoi);
+      });
+      danhSachThu.push("assets/gioi-thieu/" + i + ".jpg");
+      danhSachThu.push("assets/gioi-thieu/" + i + ".png");
+    }
+  }
+
+  // Kiểm tra những ảnh thực sự tồn tại trong thư mục
+  const anhHopLe = [];
+  let soLuongDaKiemTra = 0;
+
+  if (danhSachThu.length === 0) return;
+
+  danhSachThu.forEach(function (duongDan, thuTu) {
+    const imgTest = new Image();
+    imgTest.onload = function () {
+      anhHopLe.push({ thuTu: thuTu, src: duongDan });
+      hoanTatKiemTra();
+    };
+    imgTest.onerror = function () {
+      hoanTatKiemTra();
+    };
+    imgTest.src = duongDan;
+  });
+
+  function hoanTatKiemTra() {
+    soLuongDaKiemTra++;
+    if (soLuongDaKiemTra < danhSachThu.length) return;
+
+    if (anhHopLe.length === 0) {
+      sliderEl.style.display = "none";
+      placeholderEl.style.display = "flex";
+      return;
+    }
+
+    // Sắp xếp đúng thứ tự ảnh
+    anhHopLe.sort(function (a, b) {
+      return a.thuTu - b.thuTu;
+    });
+
+    placeholderEl.style.display = "none";
+    sliderEl.style.display = "block";
+    stageEl.innerHTML = "";
+    if (dotsEl) dotsEl.innerHTML = "";
+
+    let viTriHienTai = 0;
+    const cacSlide = [];
+    const cacDot = [];
+
+    anhHopLe.forEach(function (item, idx) {
+      const img = document.createElement("img");
+      img.src = item.src;
+      img.alt = "Hình ảnh hoạt động CLB Kỹ năng Công tác xã hội " + (idx + 1);
+      img.className = "about-gallery-slide" + (idx === 0 ? " is-active" : "");
+      stageEl.appendChild(img);
+      cacSlide.push(img);
+
+      if (dotsEl && anhHopLe.length > 1) {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "about-gallery-dot" + (idx === 0 ? " is-active" : "");
+        dot.setAttribute("aria-label", "Xem ảnh số " + (idx + 1));
+        dot.addEventListener("click", function () {
+          chuyenDenAnh(idx);
+          khoiDongLaiTuDongChuyen();
+        });
+        dotsEl.appendChild(dot);
+        cacDot.push(dot);
+      }
+    });
+
+    function chuyenDenAnh(chiSoMoi) {
+      cacSlide[viTriHienTai].classList.remove("is-active");
+      if (cacDot[viTriHienTai]) cacDot[viTriHienTai].classList.remove("is-active");
+
+      viTriHienTai = (chiSoMoi + cacSlide.length) % cacSlide.length;
+
+      cacSlide[viTriHienTai].classList.add("is-active");
+      if (cacDot[viTriHienTai]) cacDot[viTriHienTai].classList.add("is-active");
+    }
+
+    let boDemTuDong = null;
+    function khoiDongLaiTuDongChuyen() {
+      if (boDemTuDong) clearInterval(boDemTuDong);
+      if (cacSlide.length > 1) {
+        boDemTuDong = setInterval(function () {
+          chuyenDenAnh(viTriHienTai + 1);
+        }, 4000);
+      }
+    }
+
+    if (anhHopLe.length > 1) {
+      if (prevBtn) {
+        prevBtn.style.display = "inline-flex";
+        prevBtn.onclick = function () {
+          chuyenDenAnh(viTriHienTai - 1);
+          khoiDongLaiTuDongChuyen();
+        };
+      }
+      if (nextBtn) {
+        nextBtn.style.display = "inline-flex";
+        nextBtn.onclick = function () {
+          chuyenDenAnh(viTriHienTai + 1);
+          khoiDongLaiTuDongChuyen();
+        };
+      }
+      if (dotsEl) dotsEl.style.display = "flex";
+      khoiDongLaiTuDongChuyen();
+    } else {
+      if (prevBtn) prevBtn.style.display = "none";
+      if (nextBtn) nextBtn.style.display = "none";
+      if (dotsEl) dotsEl.style.display = "none";
     }
   }
 }
@@ -518,7 +880,7 @@ function khoiTaoChuyenTrangMuot() {
 function khoiTaoHieuUngCuonTrang() {
   // Gắn độ trễ nối tiếp (stagger) cho các thẻ nằm cùng một hàng/nhóm
   const cacNhomThe = [
-    ".core-values-grid .core-value-box",
+    ".motto-grid .motto-card",
     ".timeline-steps .timeline-card",
     ".ban-grid .ban-card",
     ".jd-grid .jd-card"
@@ -541,8 +903,8 @@ function khoiTaoHieuUngCuonTrang() {
       ".hero-poster-col",
       ".section-header",
       ".about-card-left",
-      ".core-value-box",
-      ".highlight-box",
+      ".about-gallery-card",
+      ".motto-card",
       ".timeline-card",
       ".ban-card",
       ".faq-lead-box",
@@ -645,4 +1007,78 @@ function khoiTaoThanhTienTrinhCuon() {
 
   window.addEventListener("resize", capNhatTienTrinh, { passive: true });
   capNhatTienTrinh();
+}
+
+/**
+ * =====================================================================
+ * HIỆU ỨNG 4: MÀN HÌNH CHỜ LOGO CLB (LOADING SCREEN / PRELOADER)
+ * Hiển thị Logo CLB kèm hiệu ứng sóng hào quang (Option 1) hoặc tùy chọn
+ * trong CONFIG.MAN_HINH_CHO, sau đó mờ dần mượt mà khi trang sẵn sàng.
+ * =====================================================================
+ */
+function khoiTaoManHinhCho() {
+  const preloader = document.getElementById("preloader");
+  if (!preloader) return;
+
+  const cfg =
+    typeof CONFIG !== "undefined" && CONFIG.MAN_HINH_CHO
+      ? CONFIG.MAN_HINH_CHO
+      : {};
+
+  // Kiểm tra nếu tắt màn hình chờ hoặc chỉ bật ở Trang chủ mà đang ở trang con
+  const laTrangCon = document.body.hasAttribute("data-ban-id");
+  if (cfg.batDau === false || (cfg.chiHienTrangChu === true && laTrangCon)) {
+    preloader.style.display = "none";
+    return;
+  }
+
+  // Áp dụng kiểu hiệu ứng từ config ("option-1" | "option-2" | "option-3")
+  const kieu = cfg.kieuHieuUng || "option-1";
+  preloader.classList.remove(
+    "preloader--option-1",
+    "preloader--option-2",
+    "preloader--option-3"
+  );
+  preloader.classList.add("preloader--" + kieu);
+
+  // Đồng bộ dòng chữ dưới Logo
+  const textEl = document.getElementById("preloader-text");
+  if (textEl) {
+    if (typeof cfg.chuHienThi === "string") {
+      if (cfg.chuHienThi.trim() === "") {
+        textEl.style.display = "none";
+      } else {
+        textEl.textContent = cfg.chuHienThi;
+      }
+    }
+  }
+
+  const thoiGianToiThieu =
+    typeof cfg.thoiGianToiThieu === "number" ? cfg.thoiGianToiThieu : 1000;
+  const thoiDiemBatDau = Date.now();
+  let daDong = false;
+
+  function dongManHinhCho() {
+    if (daDong) return;
+    daDong = true;
+    preloader.classList.add("is-hidden");
+    setTimeout(function () {
+      preloader.style.display = "none";
+    }, 550);
+  }
+
+  function kiemTraVaDong() {
+    const daQua = Date.now() - thoiDiemBatDau;
+    const conLai = Math.max(0, thoiGianToiThieu - daQua);
+    setTimeout(dongManHinhCho, conLai);
+  }
+
+  if (document.readyState === "complete") {
+    kiemTraVaDong();
+  } else {
+    window.addEventListener("load", kiemTraVaDong, { once: true });
+  }
+
+  // Chốt chặn an toàn: tối đa 2.5 giây tự động mở trang dù mạng chậm
+  setTimeout(dongManHinhCho, Math.max(thoiGianToiThieu + 500, 2500));
 }

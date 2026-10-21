@@ -23,14 +23,32 @@
 <body>
 
   <!-- ===================================================================
+       0. MÀN HÌNH CHỜ LOGO CLB (PRELOADER)
+       =================================================================== -->
+  <div id="preloader" class="preloader preloader--option-1" aria-hidden="true">
+    <div class="preloader-inner">
+      <div class="preloader-logo-box">
+        <span class="preloader-ripple preloader-ripple--1"></span>
+        <span class="preloader-ripple preloader-ripple--2"></span>
+        <span class="preloader-orbit"></span>
+        <img src="assets/logo-clb.png" alt="Logo CLB Kĩ năng Công tác xã hội" class="preloader-logo">
+      </div>
+      <div class="preloader-text" id="preloader-text">CLB KĨ NĂNG CÔNG TÁC XÃ HỘI</div>
+      <div class="preloader-bar-track">
+        <div class="preloader-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
        1. THANH ĐIỀU HƯỚNG CỐ ĐỊNH (STICKY NAVBAR)
        =================================================================== -->
   <header class="navbar">
     <div class="container navbar-inner">
       <!-- Logo và Tên CLB -->
-      <a href="index.html" class="navbar-brand" aria-label="Trang chủ CLB Kỹ năng Công tác xã hội">
-        <img src="assets/logo-clb.png" alt="Logo CLB Kỹ năng Công tác xã hội" class="navbar-logo">
-        <span>CLB KN CTXH</span>
+      <a href="index.html" class="navbar-brand" aria-label="Trang chủ CLB Kĩ năng Công tác xã hội">
+        <img src="assets/logo-clb.png" alt="Logo CLB Kĩ năng Công tác xã hội" class="navbar-logo">
+        <span class="navbar-brand-name">CLB KĨ NĂNG CÔNG TÁC XÃ HỘI</span>
       </a>
 
       <!-- Menu trên màn hình máy tính -->
@@ -163,7 +181,7 @@
     </section>
 
     <!-- ===================================================================
-         3. KHU VỰC 2: GIỚI THIỆU & DẤU ẤN CLB (ABOUT US)
+         3. KHU VỰC 2: GIỚI THIỆU & DẤU ẤN CLB (ĐỌC TỪ js/config.js + ẢNH TỪ assets/gioi-thieu/)
          =================================================================== -->
     <section class="section section-muted" id="ve-clb" aria-labelledby="about-heading">
       <div class="container">
@@ -173,49 +191,77 @@
         </div>
 
         <div class="about-grid">
-          <!-- Cột trái: Đoạn giới thiệu ngắn (giữ nguyên văn bản từ docs/ke-hoach.md) -->
+          <!-- Cột trái: Đoạn giới thiệu CLB (tự động đồng bộ từ CONFIG.GIOI_THIEU_CLB trong js/config.js) -->
           <div class="about-card-left">
-            <h3 class="about-sub-heading">Về chúng mình</h3>
-            <blockquote class="about-quote">
-              Trực thuộc <strong>Đoàn khoa Công tác xã hội - Nhân học - Xã hội học</strong> (Trường ĐH KHXH&amp;NV, ĐHQG-HCM), <strong>CLB Kỹ năng Công tác xã hội (CLB KN CTXH)</strong> ra đời như một "phòng thí nghiệm thực tiễn" giúp sinh viên gắn kết lý thuyết giảng đường với kỹ năng làm việc cùng con người và cộng đồng. Bước sang năm học 2026 – 2027 với sức mạnh giao thoa liên ngành, CLB mở rộng cánh cửa chào đón toàn thể sinh viên Nhân văn có chung đam mê phụng sự xã hội.
+            <h3 class="about-sub-heading" id="about-sub-heading">Về chúng mình</h3>
+            <blockquote class="about-quote" id="about-quote">
+              Trực thuộc Đoàn khoa Công tác xã hội - Nhân học - Xã hội học (Trường ĐH KHXH&amp;NV, ĐHQG-HCM), CLB Kỹ năng Công tác xã hội (CLB KN CTXH) ra đời như một "phòng thí nghiệm thực tiễn" giúp sinh viên gắn kết lý thuyết giảng đường với kỹ năng làm việc cùng con người và cộng đồng. Bước sang năm học 2026 – 2027 với sức mạnh giao thoa liên ngành, CLB mở rộng cánh cửa chào đón toàn thể sinh viên Nhân văn có chung đam mê phụng sự xã hội.
             </blockquote>
           </div>
 
-          <!-- Cột phải: 3 ô Giá trị cốt lõi có biểu tượng + Hộp thông tin nhanh -->
+          <!-- Cột phải: Khung ảnh hoạt động CLB (lấy ảnh từ thư mục assets/gioi-thieu/) -->
           <div class="about-col-right">
-            <!-- 3 ô biểu tượng Giá trị cốt lõi -->
-            <div class="core-values-grid" aria-label="3 Giá trị cốt lõi">
-              <div class="core-value-box">
-                <span class="core-value-icon" aria-hidden="true">🤝</span>
-                <span class="core-value-name">Thấu cảm</span>
+            <div class="about-gallery-card" id="about-gallery-card" aria-label="Hình ảnh hoạt động CLB">
+              <!-- Khung trình chiếu khi có ảnh trong thư mục assets/gioi-thieu/ -->
+              <div class="about-gallery-slider" id="about-gallery-slider" style="display: none;">
+                <div class="about-gallery-stage" id="about-gallery-stage"></div>
+
+                <!-- Nút bấm qua lại khi có từ 2 ảnh trở lên -->
+                <button
+                  type="button"
+                  class="about-gallery-nav about-gallery-prev"
+                  id="about-gallery-prev"
+                  aria-label="Xem ảnh trước"
+                  style="display: none;"
+                >‹</button>
+                <button
+                  type="button"
+                  class="about-gallery-nav about-gallery-next"
+                  id="about-gallery-next"
+                  aria-label="Xem ảnh tiếp theo"
+                  style="display: none;"
+                >›</button>
+
+                <!-- Chấm tròn báo vị trí ảnh -->
+                <div class="about-gallery-dots" id="about-gallery-dots" style="display: none;"></div>
               </div>
 
-              <div class="core-value-box">
-                <span class="core-value-icon" aria-hidden="true">🔗</span>
-                <span class="core-value-name">Kết nối</span>
-              </div>
-
-              <div class="core-value-box">
-                <span class="core-value-icon" aria-hidden="true">🌱</span>
-                <span class="core-value-name">Phát triển</span>
+              <!-- Khung giữ chỗ hiển thị khi thư mục assets/gioi-thieu/ chưa có ảnh -->
+              <div class="about-gallery-placeholder" id="about-gallery-placeholder">
+                <span class="about-gallery-badge">[CHỜ ẢNH HOẠT ĐỘNG CLB]</span>
+                <p class="about-gallery-hint">
+                  Bạn hãy bỏ các ảnh giới thiệu vào thư mục <strong>assets/gioi-thieu/</strong> (đặt tên <code>anh-1.jpg</code>, <code>anh-2.jpg</code>... hoặc khai báo trong <code>js/config.js</code>) để hiển thị tại đây.
+                </p>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <!-- Hộp thông tin nhanh (Highlight Box) -->
-            <div class="highlight-box">
-              <h3 class="highlight-box-title">Thông tin nhanh</h3>
-              <ul class="highlight-list">
-                <li>
-                  <strong>Đối tượng:</strong> Toàn thể sinh viên Trường ĐH KHXH&amp;NV, ĐHQG-HCM.
-                </li>
-                <li>
-                  <strong>Chỉ tiêu tuyển:</strong> <strong class="js-chi-tieu">35</strong> thành viên mới.
-                </li>
-                <li>
-                  <strong>Ban Chủ nhiệm:</strong> <span class="js-bcn-info">Đ/c Trần Thái Thành (Chủ nhiệm) – Đ/c Nguyễn Thị Ngọc Trân (Phó Chủ nhiệm)</span>.
-                </li>
-              </ul>
-            </div>
+    <!-- ===================================================================
+         3B. KHU VỰC PHƯƠNG CHÂM HOẠT ĐỘNG (TRÁCH NHIỆM - ĐOÀN KẾT - SÁNG TẠO - CHIA SẺ)
+         =================================================================== -->
+    <section class="section motto-section" id="phuong-cham" aria-labelledby="motto-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Giá trị cốt lõi</span>
+          <h2 class="section-title" id="motto-heading">Phương châm hoạt động</h2>
+        </div>
+
+        <!-- 4 ô phương châm (Không dùng icon, tự động đồng bộ từ CONFIG.GIOI_THIEU_CLB.phuongCham) -->
+        <div class="motto-grid" id="motto-grid" aria-label="Phương châm hoạt động CLB">
+          <div class="motto-card">
+            <span class="motto-text">Trách nhiệm</span>
+          </div>
+          <div class="motto-card">
+            <span class="motto-text">Đoàn kết</span>
+          </div>
+          <div class="motto-card">
+            <span class="motto-text">Sáng tạo</span>
+          </div>
+          <div class="motto-card">
+            <span class="motto-text">Chia sẻ</span>
           </div>
         </div>
       </div>
@@ -351,8 +397,8 @@
           </a>
         </div>
 
-        <!-- 4 thẻ câu hỏi đóng/mở -->
-        <div class="faq-list">
+        <!-- Khung chứa danh sách câu hỏi đóng/mở (tự động đồng bộ từ CONFIG.FAQ trong js/config.js) -->
+        <div class="faq-list" id="faq-list">
           <!-- Câu hỏi 1 -->
           <details class="faq-item">
             <summary class="faq-question">

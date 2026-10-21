@@ -12,7 +12,7 @@
 const BAN_DATA = [
   {
     id: "to-chuc",
-    icon: "🎪",
+    icon: "1",
     ten: "BAN TỔ CHỨC CHƯƠNG TRÌNH",
     tenTiengAnh: "",
     duongDan: "ban/to-chuc.html",
@@ -53,7 +53,7 @@ const BAN_DATA = [
 
   {
     id: "thanh-vien",
-    icon: "💛",
+    icon: "2",
     ten: "BAN THÀNH VIÊN VÀ PHÁT TRIỂN NĂNG LỰC",
     tenTiengAnh: "",
     duongDan: "ban/thanh-vien.html",
@@ -94,7 +94,7 @@ const BAN_DATA = [
 
   {
     id: "ket-noi-nguon-luc",
-    icon: "🤝",
+    icon: "3",
     ten: "BAN KẾT NỐI NGUỒN LỰC",
     tenTiengAnh: "",
     duongDan: "ban/ket-noi-nguon-luc.html",
@@ -135,7 +135,7 @@ const BAN_DATA = [
 
   {
     id: "truyen-thong",
-    icon: "📸",
+    icon: "4",
     ten: "BAN TRUYỀN THÔNG",
     tenTiengAnh: "",
     duongDan: "ban/truyen-thong.html",

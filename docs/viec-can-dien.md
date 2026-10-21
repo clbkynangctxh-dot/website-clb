@@ -29,3 +29,40 @@
   * `cacDongThongTin`: Muốn thêm dòng địa chỉ / email / hotline chỉ cần copy thêm 1 dòng trong dấu ngoặc kép `""` có dấu phẩy ở cuối; muốn bớt dòng thì xóa đi.
   * `loiNhacCuoiTrang` & `chuNutCuoiTrang`: Sửa lời kêu gọi và chữ trên nút bấm cuối trang.
   * `dongGhiChuDayTrang`: Sửa dòng ghi chú bản quyền ở đáy cùng của website (Footnote).
+
+---
+
+## 5. Tùy chỉnh Giới thiệu CLB, Ảnh hoạt động & Phương châm
+* **Vị trí sửa:** Mở file `js/config.js` tìm mục số `10. GIOI_THIEU_CLB`:
+  * `tieuDePhu`: Sửa tiêu đề nhỏ (mặc định: "Về chúng mình").
+  * `doanGioiThieu`: Sửa toàn bộ đoạn văn giới thiệu CLB.
+  * `danhSachAnh`: Điền tên file ảnh bỏ trong `assets/gioi-thieu/` (hoặc chỉ cần đặt tên `anh-1.jpg`, `anh-2.jpg`... là web tự nhận).
+  * `tieuDePhuongCham`: Sửa tiêu đề khu vực phương châm (mặc định: "Phương châm hoạt động").
+  * `phuongCham`: Sửa hoặc thêm/bớt các phương châm (mặc định: Trách nhiệm, Đoàn kết, Sáng tạo, Chia sẻ).
+
+---
+
+## 6. Tùy chỉnh chữ trên TẤT CẢ các nút bấm & Tiêu đề đầu trang
+* **Vị trí sửa:** Mở file `js/config.js` tìm mục số `11. CHU_NUT_BAM` và `12. THONG_TIN_HERO`:
+  * `nutTrenMenu`: Sửa chữ nút trên thanh menu (mặc định: "Ứng tuyển ngay").
+  * `nutChinhHero`: Sửa chữ nút cam lớn đầu trang (mặc định: "Điền đơn ứng tuyển ngay").
+  * `nutPhuHero`: Sửa chữ nút phụ đầu trang (mặc định: "Khám phá 04 ban chuyên môn ↓").
+  * `nutXemChiTietBan`: Sửa chữ nút trên 4 thẻ Ban (mặc định: "Xem chi tiết JD & Quyền lợi ➔").
+  * `nutDatCauHoi`: Sửa chữ nút ở mục FAQ (mặc định: "Đặt câu hỏi").
+  * `nutQuayVeTrangChu`: Sửa chữ nút quay lại ở các trang con (mặc định: "← Quay về Trang chủ").
+  * `nutXemDrive`: Sửa chữ nút xem Drive ở các trang con (mặc định: "📂 Xem ảnh hoạt động trên Drive ➔").
+  * `nutDangKyVaoBan`: Sửa chữ nút lớn cuối mỗi trang Ban (mặc định: "ĐĂNG KÝ NGUYỆN VỌNG VÀO BAN NÀY NGAY").
+  * `thongBaoHetHanVong1`: Sửa dòng chữ khi hết hạn (mặc định: "Vòng 1 đã đóng đơn").
+  * `tieuDeChinh` & `thongDiepNgan`: Sửa tiêu đề to nhất và câu châm ngôn ngắn ở đầu trang chủ.
+
+---
+
+## 7. Tùy chỉnh mục Những câu hỏi thường gặp (FAQ)
+* **Vị trí sửa:** Mở file `js/config.js` tìm mục số `13. FAQ`:
+  * `theMuc`: Sửa thẻ tag nhỏ (mặc định: "Hỏi đáp").
+  * `tieuDe`: Sửa tiêu đề mục FAQ (mặc định: "NHỮNG CÂU HỎI THƯỜNG GẶP").
+  * `loiDan`: Sửa lời nhắn nhủ cạnh nút "Đặt câu hỏi".
+  * `danhSach`: Danh sách từng câu hỏi và câu trả lời.
+    * Sửa chữ: chỉ cần sửa nội dung trong dấu ngoặc kép `""`.
+    * Thêm câu hỏi: copy thêm 1 khối `{ cauHoi: "...", cauTraLoi: "..." }` kèm dấu phẩy ở cuối.
+    * Bớt câu hỏi: xóa khối câu hỏi bạn không cần đi.

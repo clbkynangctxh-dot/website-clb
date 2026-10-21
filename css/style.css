@@ -281,15 +281,24 @@ a {
   align-items: center;
   gap: var(--space-3);
   font-weight: 800;
-  font-size: var(--font-size-md);
   color: var(--color-primary);
   min-height: 44px;
+  text-decoration: none;
+}
+
+.navbar-brand-name {
+  font-size: clamp(0.85rem, 3.2vw, 1.05rem);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  color: var(--color-primary);
 }
 
 .navbar-logo {
   height: 42px;
   width: auto;
   object-fit: contain;
+  flex-shrink: 0;
 }
 
 /* Menu trên máy tính: Mặc định ẩn trên điện thoại (mobile-first) */
@@ -590,84 +599,211 @@ a {
 .about-col-right {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  height: 100%;
 }
 
-/* 3 ô biểu tượng Giá trị cốt lõi */
-.core-values-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-3);
-}
-
-.core-value-box {
+/* Khung trình chiếu ảnh hoạt động bên cạnh phần Giới thiệu CLB */
+.about-gallery-card {
   background-color: var(--color-bg-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-3) var(--space-2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  min-height: 280px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.about-gallery-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  flex: 1;
+  background-color: var(--color-primary-light);
+  overflow: hidden;
+}
+
+.about-gallery-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+}
+
+.about-gallery-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+
+.about-gallery-slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Nút bấm chuyển ảnh Trước / Tiếp theo (cao & rộng >= 44px dễ bấm trên điện thoại) */
+.about-gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background-color: rgba(255, 253, 249, 0.9);
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  z-index: 2;
+}
+
+.about-gallery-nav:hover,
+.about-gallery-nav:focus-visible {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.about-gallery-prev {
+  left: 12px;
+}
+
+.about-gallery-next {
+  right: 12px;
+}
+
+.about-gallery-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  background-color: rgba(45, 42, 38, 0.45);
+  z-index: 2;
+}
+
+.about-gallery-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background-color: rgba(255, 255, 255, 0.55);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: width 0.25s ease, background-color 0.25s ease;
+}
+
+.about-gallery-dot.is-active {
+  width: 22px;
+  background-color: #FFFFFF;
+}
+
+/* Khung giữ chỗ khi thư mục assets/gioi-thieu/ chưa có ảnh */
+.about-gallery-placeholder {
+  flex: 1;
+  min-height: 280px;
+  padding: var(--space-6);
+  background-color: var(--color-primary-light);
+  border: 2px dashed var(--color-primary-subtle);
+  border-radius: var(--radius-lg);
+  margin: var(--space-3);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: var(--space-2);
+  gap: var(--space-3);
+}
+
+.about-gallery-badge {
+  display: inline-block;
+  background-color: var(--color-bg-surface);
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-primary-subtle);
+}
+
+.about-gallery-hint {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  max-width: 380px;
+  line-height: 1.6;
+}
+
+.about-gallery-hint code {
+  background-color: var(--color-bg-surface);
+  color: var(--color-primary);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* =====================================================================
+   7B. KHU VỰC PHƯƠNG CHÂM HOẠT ĐỘNG (4 Ô KHÔNG DÙNG ICON)
+   ===================================================================== */
+.motto-section {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.motto-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.motto-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-top: 4px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 96px;
   box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-@media (min-width: 480px) {
-  .core-value-box {
-    flex-direction: row;
-    padding: var(--space-4) var(--space-3);
-  }
-}
-
-.core-value-box:hover {
-  transform: translateY(-2px);
+.motto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
   border-color: var(--color-primary);
 }
 
-.core-value-icon {
-  font-size: 1.5rem;
-  line-height: 1;
-  flex-shrink: 0;
-}
-
-.core-value-name {
-  font-size: var(--font-size-base);
-  font-weight: 700;
-  color: var(--color-primary);
-}
-
-/* Hộp thông tin nhanh (Highlight Box) */
-.highlight-box {
-  background-color: var(--color-primary-light);
-  border: 1px solid var(--color-primary-subtle);
-  border-radius: var(--radius-lg);
-  padding: var(--space-5) var(--space-6);
-  box-shadow: var(--shadow-sm);
-}
-
-.highlight-box-title {
-  font-size: var(--font-size-sm);
+.motto-text {
+  font-size: clamp(1.125rem, 2.2vw, var(--font-size-xl));
   font-weight: 800;
   color: var(--color-primary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: var(--space-3);
+  letter-spacing: 0.02em;
 }
 
-.highlight-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  font-size: var(--font-size-base);
-  color: var(--color-text-main);
-}
-
-.highlight-list li {
-  line-height: 1.5;
+@media (min-width: 768px) {
+  .motto-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
 }
 
 /* =====================================================================
@@ -1545,5 +1681,205 @@ body.is-page-leaving .site-footer {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+  .preloader {
+    display: none !important;
+  }
+}
+
+/* =====================================================================
+   15. MÀN HÌNH CHỜ LOGO CLB (LOADING SCREEN / PRELOADER)
+   ===================================================================== */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg-page, #FFFAF3);
+  transition:
+    opacity 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.preloader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.preloader--option-1.is-hidden {
+  transform: scale(1.04);
+}
+
+.preloader--option-2.is-hidden {
+  transform: scale(0.96);
+}
+
+.preloader--option-3.is-hidden {
+  transform: translateY(-100%);
+}
+
+.preloader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  padding: 24px;
+}
+
+.preloader-logo-box {
+  position: relative;
+  width: 116px;
+  height: 116px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader-logo {
+  width: 84px;
+  height: 84px;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 6px 16px rgba(230, 81, 0, 0.18));
+}
+
+/* --- OPTION 1: Nhịp thở & Sóng hào quang lan tỏa (Pulse & Glow Ripple) --- */
+.preloader--option-1 .preloader-logo {
+  animation: preloaderPulse 1.5s ease-in-out infinite;
+}
+
+.preloader--option-1 .preloader-ripple {
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--color-primary, #FF8A00);
+  background: radial-gradient(
+    circle,
+    rgba(255, 138, 0, 0.2) 0%,
+    rgba(255, 138, 0, 0) 72%
+  );
+  opacity: 0;
+  pointer-events: none;
+}
+
+.preloader--option-1 .preloader-ripple--1 {
+  animation: preloaderRipple 1.7s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.preloader--option-1 .preloader-ripple--2 {
+  animation: preloaderRipple 1.7s cubic-bezier(0.16, 1, 0.3, 1) 0.6s infinite;
+}
+
+.preloader--option-1 .preloader-orbit {
+  display: none;
+}
+
+/* --- OPTION 2: Quỹ đạo năng lượng & Vệt sáng quét (Orbit & Shimmer) --- */
+.preloader--option-2 .preloader-ripple {
+  display: none;
+}
+
+.preloader--option-2 .preloader-orbit {
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 138, 0, 0.16);
+  border-top-color: var(--color-primary, #FF8A00);
+  border-right-color: #FFB347;
+  animation: preloaderSpin 0.95s linear infinite;
+}
+
+/* --- OPTION 3: Nhịp tim ấm áp & Kéo rèm sân khấu (Heartbeat & Curtain) --- */
+.preloader--option-3 .preloader-ripple,
+.preloader--option-3 .preloader-orbit {
+  display: none;
+}
+
+.preloader--option-3 .preloader-logo {
+  animation: preloaderHeartbeat 1.25s ease-in-out infinite;
+}
+
+/* Chữ chào mừng và thanh tiến trình mini dưới Logo */
+.preloader-text {
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--color-primary, #FF8A00);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.preloader-bar-track {
+  width: 148px;
+  height: 4px;
+  background-color: rgba(255, 138, 0, 0.16);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.preloader-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-primary, #FF8A00), #FF6D3A);
+  border-radius: 999px;
+  animation: preloaderBarFill 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes preloaderPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes preloaderRipple {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1.68);
+    opacity: 0;
+  }
+}
+
+@keyframes preloaderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes preloaderHeartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.14);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.14);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+@keyframes preloaderBarFill {
+  0% {
+    width: 8%;
+  }
+  100% {
+    width: 100%;
   }
 }

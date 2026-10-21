@@ -1,0 +1,16 @@
+HƯỚNG DẪN BỎ ẢNH VÀO THƯ MỤC NÀY (assets/gioi-thieu/)
+=======================================================
+
+Cách 1 (Đơn giản nhất - Không cần sửa file nào):
+- Bạn chỉ cần chép các ảnh hoạt động của CLB vào thư mục này và đặt tên lần lượt là:
+  anh-1.jpg, anh-2.jpg, anh-3.jpg, anh-4.jpg, anh-5.jpg
+  (hoặc đuôi .png: anh-1.png, anh-2.png, ...)
+- Trang web sẽ tự động tìm và hiển thị các ảnh này lên khung ảnh bên cạnh phần Giới thiệu CLB!
+
+Cách 2 (Giữ nguyên tên file ảnh bất kỳ):
+- Bạn chép ảnh vào thư mục này.
+- Mở file js/config.js bằng Notepad, tìm mục GIOI_THIEU_CLB -> danhSachAnh và điền tên file ảnh vào, ví dụ:
+  danhSachAnh: [
+    "buoi-sinh-hoat.jpg",
+    "trung-thu.png"
+  ]
