@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tuyển thành viên CLB Kỹ năng Công tác xã hội (CLB KN CTXH) năm học 2026 – 2027, Trường ĐH KHXH&amp;NV, ĐHQG-HCM.">
+  <title>Tuyển Thành Viên CLB Kỹ Năng Công Tác Xã Hội 2026 – 2027</title>
+
+  <!-- Thẻ Open Graph giúp hiển thị ảnh Poster xem trước khi chia sẻ link lên Facebook / Messenger -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:title" content="Tuyển Thành Viên CLB Kỹ Năng Công Tác Xã Hội 2026 – 2027">
+  <meta property="og:description" content="Thấu cảm để sẻ chia – Rèn kỹ năng để trưởng thành. Hãy trở thành một trong 35 mảnh ghép thế hệ mới của đại gia đình CLB Kỹ năng Công tác xã hội!">
+  <meta property="og:image" content="assets/poster.png">
+  <meta property="og:image:alt" content="Poster chính thức Chương trình Tuyển thành viên CLB Kỹ năng Công tác xã hội năm học 2026 – 2027">
+
+  <!-- Biểu tượng trang web (Favicon) trên thanh tiêu đề trình duyệt -->
+  <link rel="icon" type="image/png" href="assets/logo-clb.png">
+
+  <!-- Nhúng file kiểu dáng giao diện dùng chung -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===================================================================
+       1. THANH ĐIỀU HƯỚNG CỐ ĐỊNH (STICKY NAVBAR)
+       =================================================================== -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <!-- Logo và Tên CLB -->
+      <a href="index.html" class="navbar-brand" aria-label="Trang chủ CLB Kỹ năng Công tác xã hội">
+        <img src="assets/logo-clb.png" alt="Logo CLB Kỹ năng Công tác xã hội" class="navbar-logo">
+        <span>CLB KN CTXH</span>
+      </a>
+
+      <!-- Menu trên màn hình máy tính -->
+      <nav aria-label="Điều hướng chính">
+        <ul class="navbar-nav">
+          <li><a href="#ve-clb" class="nav-link">Về CLB</a></li>
+          <li><a href="#lo-trinh" class="nav-link">Lộ trình</a></li>
+          <li><a href="#cac-ban" class="nav-link">Các Ban</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li>
+            <button type="button" class="btn btn-cta js-btn-apply" onclick="moDonUngTuyen(event)">
+              Ứng tuyển ngay
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Nút menu 3 gạch trên màn hình điện thoại -->
+      <button
+        type="button"
+        class="mobile-menu-toggle"
+        id="mobile-menu-toggle"
+        aria-label="Mở menu điều hướng"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Menu xổ xuống trên màn hình điện thoại -->
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Điều hướng trên điện thoại">
+      <div class="container">
+        <ul class="mobile-nav-list">
+          <li><a href="#ve-clb" class="mobile-nav-link">Về CLB</a></li>
+          <li><a href="#lo-trinh" class="mobile-nav-link">Lộ trình</a></li>
+          <li><a href="#cac-ban" class="mobile-nav-link">Các Ban</a></li>
+          <li><a href="#faq" class="mobile-nav-link">FAQ</a></li>
+          <li style="padding-top: 8px;">
+            <button type="button" class="btn btn-cta js-btn-apply" style="width: 100%;" onclick="moDonUngTuyen(event)">
+              Ứng tuyển ngay
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===================================================================
+         2. KHU VỰC 1: HERO SECTION (POSTER, TIÊU ĐỀ, ĐẾM NGƯỢC, 2 NÚT)
+         =================================================================== -->
+    <section class="hero-section" aria-labelledby="hero-headline">
+      <div class="container">
+        <div class="hero-grid">
+
+          <!-- Cột thông tin chính: Tiêu đề, thông điệp ngắn, đồng hồ đếm ngược, 2 nút -->
+          <div class="hero-content">
+            <h1 class="hero-title" id="hero-headline">
+              TUYỂN THÀNH VIÊN CLB KỸ NĂNG CÔNG TÁC XÃ HỘI 2026 – 2027
+            </h1>
+
+            <p class="hero-subtitle">
+              "Thấu cảm để sẻ chia – Rèn kỹ năng để trưởng thành. Hãy trở thành một trong <span class="js-chi-tieu">35</span> mảnh ghép thế hệ mới của đại gia đình CLB Kỹ năng Công tác xã hội!"
+            </p>
+
+            <!-- Đồng hồ đếm ngược Ngày : Giờ : Phút -->
+            <div class="countdown-box" id="countdown-box" aria-live="polite">
+              <div class="countdown-label-top">
+                ⏳ Thời gian còn lại để hoàn thành Vòng 1
+              </div>
+
+              <div class="countdown-timer">
+                <div class="countdown-unit">
+                  <div class="countdown-number" id="cd-days">00</div>
+                  <div class="countdown-unit-label">Ngày</div>
+                </div>
+
+                <span class="countdown-separator" aria-hidden="true">:</span>
+
+                <div class="countdown-unit">
+                  <div class="countdown-number" id="cd-hours">00</div>
+                  <div class="countdown-unit-label">Giờ</div>
+                </div>
+
+                <span class="countdown-separator" aria-hidden="true">:</span>
+
+                <div class="countdown-unit">
+                  <div class="countdown-number" id="cd-minutes">00</div>
+                  <div class="countdown-unit-label">Phút</div>
+                </div>
+              </div>
+
+              <!-- Dòng thông báo hiển thị khi đã qua hạn Vòng 1 -->
+              <div class="countdown-expired-message" id="countdown-expired-msg">
+                Vòng 1 đã đóng đơn
+              </div>
+            </div>
+
+            <!-- Cụm 2 nút bấm hành động -->
+            <div class="hero-actions">
+              <button type="button" class="btn btn-cta js-btn-apply" onclick="moDonUngTuyen(event)">
+                Điền đơn ứng tuyển ngay
+              </button>
+              <a href="#cac-ban" class="btn btn-secondary">
+                Khám phá 04 ban chuyên môn ↓
+              </a>
+            </div>
+          </div>
+
+          <!-- Cột hình ảnh: Poster chính thức (có khung giữ chỗ [CHỜ POSTER] nếu thiếu ảnh) -->
+          <div class="hero-poster-col">
+            <div class="hero-poster-card">
+              <img
+                src="assets/poster.png"
+                alt="Poster chính thức Chương trình Tuyển thành viên CLB Kỹ năng Công tác xã hội năm học 2026 – 2027"
+                class="hero-poster-img"
+                onerror="xuLyLoiPoster(this)"
+              >
+            </div>
+            <div class="poster-placeholder" id="poster-placeholder">
+              [CHỜ POSTER]
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         3. KHU VỰC 2: GIỚI THIỆU & DẤU ẤN CLB (ABOUT US)
+         =================================================================== -->
+    <section class="section section-muted" id="ve-clb" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Về CLB</span>
+          <h2 class="section-title" id="about-heading">Giới thiệu &amp; Dấu ấn CLB</h2>
+        </div>
+
+        <div class="about-grid">
+          <!-- Cột trái: Đoạn giới thiệu ngắn (giữ nguyên văn bản từ docs/ke-hoach.md) -->
+          <div class="about-card-left">
+            <h3 class="about-sub-heading">Về chúng mình</h3>
+            <blockquote class="about-quote">
+              Trực thuộc <strong>Đoàn khoa Công tác xã hội - Nhân học - Xã hội học</strong> (Trường ĐH KHXH&amp;NV, ĐHQG-HCM), <strong>CLB Kỹ năng Công tác xã hội (CLB KN CTXH)</strong> ra đời như một "phòng thí nghiệm thực tiễn" giúp sinh viên gắn kết lý thuyết giảng đường với kỹ năng làm việc cùng con người và cộng đồng. Bước sang năm học 2026 – 2027 với sức mạnh giao thoa liên ngành, CLB mở rộng cánh cửa chào đón toàn thể sinh viên Nhân văn có chung đam mê phụng sự xã hội.
+            </blockquote>
+          </div>
+
+          <!-- Cột phải: 3 ô Giá trị cốt lõi có biểu tượng + Hộp thông tin nhanh -->
+          <div class="about-col-right">
+            <!-- 3 ô biểu tượng Giá trị cốt lõi -->
+            <div class="core-values-grid" aria-label="3 Giá trị cốt lõi">
+              <div class="core-value-box">
+                <span class="core-value-icon" aria-hidden="true">🤝</span>
+                <span class="core-value-name">Thấu cảm</span>
+              </div>
+
+              <div class="core-value-box">
+                <span class="core-value-icon" aria-hidden="true">🔗</span>
+                <span class="core-value-name">Kết nối</span>
+              </div>
+
+              <div class="core-value-box">
+                <span class="core-value-icon" aria-hidden="true">🌱</span>
+                <span class="core-value-name">Phát triển</span>
+              </div>
+            </div>
+
+            <!-- Hộp thông tin nhanh (Highlight Box) -->
+            <div class="highlight-box">
+              <h3 class="highlight-box-title">Thông tin nhanh</h3>
+              <ul class="highlight-list">
+                <li>
+                  <strong>Đối tượng:</strong> Toàn thể sinh viên Trường ĐH KHXH&amp;NV, ĐHQG-HCM.
+                </li>
+                <li>
+                  <strong>Chỉ tiêu tuyển:</strong> <strong class="js-chi-tieu">35</strong> thành viên mới.
+                </li>
+                <li>
+                  <strong>Ban Chủ nhiệm:</strong> <span class="js-bcn-info">Đ/c Trần Thái Thành (Chủ nhiệm) – Đ/c Nguyễn Thị Ngọc Trân (Phó Chủ nhiệm)</span>.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         4. KHU VỰC 3: LỘ TRÌNH 03 VÒNG TUYỂN CHỌN (TIMELINE)
+         =================================================================== -->
+    <section class="section" id="lo-trinh" aria-labelledby="timeline-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Lộ trình</span>
+          <h2 class="section-title" id="timeline-heading">Lộ trình 03 Vòng Tuyển Chọn</h2>
+        </div>
+
+        <div class="timeline-steps">
+          <!-- Thẻ 1: Vòng 1 -->
+          <article class="timeline-card" id="card-vong-1">
+            <div class="timeline-card-header">
+              <span class="timeline-step-number" aria-hidden="true">1</span>
+              <span class="timeline-status-badge" id="status-vong-1">Đang kiểm tra...</span>
+            </div>
+
+            <h3 class="timeline-round-title">VÒNG 1: ĐIỀN BIỂU MẪU</h3>
+
+            <div class="timeline-meta">
+              <div class="timeline-time-row">
+                <span class="timeline-meta-label">Thời gian:</span>
+                <span class="timeline-time-value" id="time-vong-1">07/10 – 17/10/2026</span>
+              </div>
+              <div class="timeline-format-row">
+                <span class="timeline-meta-label">Hình thức:</span>
+                <span>Trực tuyến (Google Form)</span>
+              </div>
+            </div>
+
+            <p class="timeline-summary">
+              Chia sẻ thông tin cá nhân, mục tiêu và nguyện vọng bằng sự chân thành, mạch lạc.
+            </p>
+          </article>
+
+          <!-- Thẻ 2: Vòng 2 -->
+          <article class="timeline-card" id="card-vong-2">
+            <div class="timeline-card-header">
+              <span class="timeline-step-number" aria-hidden="true">2</span>
+              <span class="timeline-status-badge" id="status-vong-2">Đang kiểm tra...</span>
+            </div>
+
+            <h3 class="timeline-round-title">VÒNG 2: PHỎNG VẤN</h3>
+
+            <div class="timeline-meta">
+              <div class="timeline-time-row">
+                <span class="timeline-meta-label">Thời gian:</span>
+                <span class="timeline-time-value" id="time-vong-2">11/10 (Đợt 1) &amp; 18/10/2026 (Đợt 2)</span>
+              </div>
+              <div class="timeline-format-row">
+                <span class="timeline-meta-label">Hình thức:</span>
+                <span>Trực tiếp kết hợp Trực tuyến</span>
+              </div>
+            </div>
+
+            <p class="timeline-summary">
+              Trò chuyện trực tiếp cùng Ban Giám khảo để làm rõ cá tính và mức độ phù hợp.
+            </p>
+          </article>
+
+          <!-- Thẻ 3: Vòng 3 -->
+          <article class="timeline-card" id="card-vong-3">
+            <div class="timeline-card-header">
+              <span class="timeline-step-number" aria-hidden="true">3</span>
+              <span class="timeline-status-badge" id="status-vong-3">Đang kiểm tra...</span>
+            </div>
+
+            <h3 class="timeline-round-title">VÒNG 3: LÀM VIỆC NHÓM</h3>
+
+            <div class="timeline-meta">
+              <div class="timeline-time-row">
+                <span class="timeline-meta-label">Thời gian:</span>
+                <span class="timeline-time-value" id="time-vong-3">19/10 – 23/10/2026</span>
+              </div>
+              <div class="timeline-format-row">
+                <span class="timeline-meta-label">Hình thức:</span>
+                <span>Trực tuyến kết hợp Trực tiếp</span>
+              </div>
+            </div>
+
+            <p class="timeline-summary">
+              Phối hợp giữa 4 ban để lập kế hoạch thực tế cho chương trình giả định <em>"Trung thu yêu thương"</em>.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         5. KHU VỰC 4: KHÁM PHÁ 04 BAN CHUYÊN MÔN (TẠO TỪ js/ban-data.js)
+         =================================================================== -->
+    <section class="section section-muted" id="cac-ban" aria-labelledby="ban-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Các Ban</span>
+          <h2 class="section-title" id="ban-heading">Khám phá 04 Ban Chuyên Môn</h2>
+        </div>
+
+        <!-- Khung chứa 4 thẻ Ban được sinh tự động từ js/ban-data.js -->
+        <div class="ban-grid" id="ban-cards-container"></div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         6. KHU VỰC 5: NHỮNG CÂU HỎI THƯỜNG GẶP (FAQ ACCORDION)
+         =================================================================== -->
+    <section class="section" id="faq" aria-labelledby="faq-heading">
+      <div class="container faq-container">
+        <div class="section-header">
+          <span class="section-tag">Hỏi đáp</span>
+          <h2 class="section-title" id="faq-heading">NHỮNG CÂU HỎI THƯỜNG GẶP</h2>
+        </div>
+
+        <!-- Lời dẫn & Nút Đặt câu hỏi mở Fanpage ở tab mới -->
+        <div class="faq-lead-box">
+          <p class="faq-lead-text">
+            "Nếu bạn có bất kỳ thắc mắc nào liên quan đến chương trình Tuyển thành viên lần này, đừng ngại ngần mà hãy liên hệ với Fanpage CLB nhé!"
+          </p>
+          <a
+            href="https://www.facebook.com/kynangctxh"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary js-link-fanpage"
+            style="flex-shrink: 0;"
+          >
+            Đặt câu hỏi
+          </a>
+        </div>
+
+        <!-- 4 thẻ câu hỏi đóng/mở -->
+        <div class="faq-list">
+          <!-- Câu hỏi 1 -->
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>1. Nếu chưa từng tham gia các hoạt động ngoại khoá nào trước đó thì mình có cơ hội cạnh tranh và được đánh giá cao không?</span>
+              <span class="faq-plus-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Hoàn toàn có nhé! CLB Kỹ năng Công tác xã hội không đặt nặng việc bạn phải có thật nhiều kinh nghiệm hay một chiếc hồ sơ hoạt động dày đặc từ trước. Ở các vòng tuyển chọn, Ban Giám khảo đánh giá cao nhất là <strong>thái độ cầu thị, sự nhiệt huyết, tinh thần trách nhiệm và sự chân thành</strong> của bạn. CLB chính là môi trường để bạn rèn luyện và phát triển; chỉ cần bạn sẵn sàng bước ra khỏi vùng an toàn, các anh chị đi trước và Ban Thành viên &amp; Phát triển năng lực sẽ luôn đồng hành, tập huấn cho bạn từ những bước cơ bản nhất.
+              </p>
+            </div>
+          </details>
+
+          <!-- Câu hỏi 2 -->
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>2. Trong quá trình tham gia CLB, liệu mình có cơ hội tìm hiểu hoặc học hỏi thêm các kiến thức bên ngoài ban chuyên môn mà mình ứng tuyển không?</span>
+              <span class="faq-plus-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Chắc chắn là có! Dù mỗi thành viên đều thuộc một ban chuyên môn cố định, nhưng mọi chương trình học thuật và dự án cộng đồng của CLB đều cần sự phối hợp chặt chẽ giữa cả 04 ban (Tổ chức chương trình, Thành viên &amp; Phát triển năng lực, Kết nối nguồn lực, Truyền thông). Bên cạnh đó, CLB thường xuyên tổ chức các buổi tập huấn kỹ năng chung cho toàn thể thành viên, và bạn hoàn toàn có thể đăng ký tham gia hỗ trợ chéo các mảng công việc khác trong từng chiến dịch để thử sức và khám phá đa dạng năng lực của bản thân.
+              </p>
+            </div>
+          </details>
+
+          <!-- Câu hỏi 3 -->
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>3. Ngoài tổ chức các chương trình, CLB Kỹ năng Công tác xã hội còn mang đến cho mình những trải nghiệm gì khác?</span>
+              <span class="faq-plus-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Không chỉ dừng lại ở việc chạy sự kiện hay thực hiện các dự án cộng đồng, CLB KN CTXH còn là một "gia đình nhỏ" mang đến cho bạn những trải nghiệm thanh xuân đáng nhớ:
+              </p>
+              <ul class="faq-bullet-list">
+                <li>
+                  <strong>Sinh hoạt nội bộ &amp; Gắn kết:</strong> Những buổi gặp gỡ ấm cúng, cùng nhau vui chơi, giải tỏa áp lực học tập và sẻ chia mọi câu chuyện vui buồn trong cuộc sống đại học.
+                </li>
+                <li>
+                  <strong>Không gian học thuật &amp; Tập huấn chuyên sâu:</strong> Cơ hội được trau dồi kiến thức, lắng nghe chia sẻ thực tế từ các giảng viên, chuyên gia Công tác xã hội và các anh chị cựu thành viên giàu kinh nghiệm.
+                </li>
+                <li>
+                  <strong>Mạng lưới mối quan hệ chất lượng:</strong> Tìm thấy những người bạn đồng điệu, những đàn anh, đàn chị luôn sẵn sàng nâng đỡ và hỗ trợ bạn trong cả việc học trên trường lẫn định hướng phát triển bản thân.
+                </li>
+              </ul>
+            </div>
+          </details>
+
+          <!-- Câu hỏi 4 -->
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>4. Mình có thể phát triển những kỹ năng nào khi tham gia CLB?</span>
+              <span class="faq-plus-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Khi trở thành mảnh ghép của CLB KN CTXH, bạn sẽ được rèn luyện song song cả <strong>kỹ năng thực hành Công tác xã hội</strong> lẫn <strong>bộ kỹ năng mềm thiết yếu</strong>:
+              </p>
+              <ul class="faq-bullet-list">
+                <li>
+                  <strong>Kỹ năng làm việc với con người &amp; cộng đồng:</strong> Kỹ năng lắng nghe tích cực, thấu cảm, giao tiếp ứng xử, điều phối nhóm và xử lý tình huống thực tế khi làm việc cùng các nhóm đối tượng yếu thế (trẻ em, người cao tuổi...).
+                </li>
+                <li>
+                  <strong>Kỹ năng làm việc chuyên nghiệp:</strong> Tư duy lập kế hoạch, quản lý thời gian, làm việc nhóm, thuyết trình và giải quyết vấn đề.
+                </li>
+                <li>
+                  <strong>Kỹ năng chuyên môn theo từng ban:</strong> Soạn thảo văn bản hành chính Đoàn – Hội, viết Hồ sơ tài trợ và đàm phán đối ngoại, quản trị nhân sự, hoặc sáng tạo nội dung, thiết kế ấn phẩm và quay dựng truyền thông.
+                </li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================================================================
+       7. KHU VỰC 6: CHÂN TRANG (FOOTER)
+       =================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Cột trái: Logo, Tên đơn vị & Kênh liên hệ -->
+        <div class="footer-info">
+          <div class="footer-brand">
+            <img src="assets/logo-clb.png" alt="Logo CLB Kỹ năng Công tác xã hội" class="footer-logo">
+            <p class="footer-unit-name">
+              CLB Kỹ năng Công tác xã hội – Đoàn khoa Công tác xã hội - Nhân học - Xã hội học, Trường ĐH KHXH&amp;NV, ĐHQG-HCM.
+            </p>
+          </div>
+
+          <ul class="footer-contact-list">
+            <li>
+              🌐 Fanpage:
+              <a
+                href="https://www.facebook.com/kynangctxh"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer-link js-link-fanpage"
+              >facebook.com/kynangctxh</a>
+            </li>
+            <li>
+              📍 Địa điểm hoạt động: Cơ sở Linh Trung (TP. Thủ Đức) &amp; Cơ sở Đinh Tiên Hoàng (Quận 1).
+            </li>
+          </ul>
+        </div>
+
+        <!-- Cột phải: Nút nhắc cuối trang -->
+        <div class="footer-cta-card">
+          <p class="footer-cta-text">
+            "Đừng bỏ lỡ cơ hội trở thành một phần của CLB KN CTXH"
+          </p>
+          <button type="button" class="btn btn-cta js-btn-apply" onclick="moDonUngTuyen(event)">
+            ĐIỀN ĐƠN NGAY
+          </button>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 – 2027 CLB Kỹ năng Công tác xã hội – Trường ĐH KHXH&amp;NV, ĐHQG-HCM.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Nhúng các file cấu hình, dữ liệu ban và kịch bản -->
+  <script src="js/config.js"></script>
+  <script src="js/ban-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

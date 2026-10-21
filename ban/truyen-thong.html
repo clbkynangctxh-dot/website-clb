@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mô tả công việc (JD) và Quyền lợi tại Ban Truyền thông – CLB Kỹ năng Công tác xã hội 2026 – 2027.">
+  <title>JD Ban Truyền Thông | CLB KN CTXH</title>
+
+  <!-- Thẻ Open Graph giúp hiển thị ảnh Poster xem trước khi chia sẻ link lên Facebook / Messenger -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:title" content="JD Ban Truyền Thông | CLB Kỹ Năng Công Tác Xã Hội 2026 – 2027">
+  <meta property="og:description" content="Người kể chuyện bằng ngôn từ và hình ảnh, lan tỏa thông điệp nhân văn đến cộng đồng. Khám phá mô tả công việc, yêu cầu và quyền lợi tại Ban Truyền thông.">
+  <meta property="og:image" content="../assets/poster.png">
+  <meta property="og:image:alt" content="Poster chính thức Chương trình Tuyển thành viên CLB Kỹ năng Công tác xã hội năm học 2026 – 2027">
+
+  <!-- Biểu tượng trang web (Favicon) -->
+  <link rel="icon" type="image/png" href="../assets/logo-clb.png">
+
+  <!-- Đường dẫn tương đối tới file kiểu dáng giao diện dùng chung -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-ban-id="truyen-thong">
+
+  <!-- ===================================================================
+       1. THANH ĐIỀU HƯỚNG ĐẦU TRANG CON
+       =================================================================== -->
+  <header class="navbar">
+    <div class="container subpage-navbar-inner">
+      <div class="subpage-top-row">
+        <a href="../index.html" class="back-home-btn" aria-label="Quay về Trang chủ">
+          ← Quay về Trang chủ
+        </a>
+      </div>
+
+      <!-- Thanh chuyển nhanh qua lại giữa 4 Ban (Ban đang xem được tô sáng) -->
+      <nav aria-label="Chuyển nhanh giữa 04 Ban chuyên môn">
+        <ul class="ban-switcher">
+          <li>
+            <a href="to-chuc.html" class="ban-switch-link" data-switch-id="to-chuc">
+              Ban Tổ chức
+            </a>
+          </li>
+          <li>
+            <a href="thanh-vien.html" class="ban-switch-link" data-switch-id="thanh-vien">
+              Ban Thành viên
+            </a>
+          </li>
+          <li>
+            <a href="ket-noi-nguon-luc.html" class="ban-switch-link" data-switch-id="ket-noi-nguon-luc">
+              Ban Nguồn lực
+            </a>
+          </li>
+          <li>
+            <a href="truyen-thong.html" class="ban-switch-link is-active" data-switch-id="truyen-thong" aria-current="page">
+              Ban Truyền thông
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================================================================
+         2. BANNER ĐẦU TRANG CỦA BAN (ĐỌC DỮ LIỆU TỪ js/ban-data.js)
+         =================================================================== -->
+    <section class="ban-hero" aria-labelledby="ban-title">
+      <div class="container">
+        <div class="ban-hero-grid">
+          <!-- Cột thông tin Ban: Biểu tượng, Tên ban, Slogan -->
+          <div class="ban-hero-info">
+            <div class="ban-hero-icon" id="ban-icon" aria-hidden="true">📸</div>
+            <h1 class="ban-hero-title" id="ban-title">BAN TRUYỀN THÔNG</h1>
+            <blockquote class="ban-hero-slogan" id="ban-slogan">
+              "Người kể chuyện bằng ngôn từ và hình ảnh, lan tỏa thông điệp nhân văn đến cộng đồng."
+            </blockquote>
+          </div>
+
+          <!-- Cột hình ảnh / Nút dẫn sang Google Drive ảnh hoạt động của Ban -->
+          <div class="ban-media-box">
+            <span class="ban-media-placeholder-tag" id="ban-drive-status">
+              [CHỜ ẢNH MINH HỌA HOẠT ĐỘNG]
+            </span>
+            <p class="ban-media-desc">
+              Khám phá những khoảnh khắc hoạt động thực tế của Ban trên thư mục lưu trữ Google Drive.
+            </p>
+            <a href="#" id="ban-drive-btn" class="btn btn-secondary">
+              📂 Xem ảnh hoạt động trên Drive ➔
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         3. NỘI DUNG CHI TIẾT 3 KHỐI JD (ĐỌC TỪ js/ban-data.js)
+         =================================================================== -->
+    <section class="section" aria-label="Chi tiết mô tả công việc, yêu cầu và quyền lợi">
+      <div class="container">
+        <div class="jd-grid">
+
+          <!-- Khối 1: Mô tả công việc (Bạn sẽ làm gì?) -->
+          <article class="jd-card">
+            <div class="jd-card-header">
+              <span class="jd-card-icon" aria-hidden="true">📋</span>
+              <div>
+                <h2 class="jd-card-title">Bạn sẽ làm gì?</h2>
+                <span class="jd-card-subtitle">Mô tả công việc (Nhiệm vụ chính)</span>
+              </div>
+            </div>
+            <ul class="jd-list" id="jd-nhiem-vu"></ul>
+          </article>
+
+          <!-- Khối 2: Yêu cầu ứng viên (Chúng mình tìm kiếm ai?) -->
+          <article class="jd-card">
+            <div class="jd-card-header">
+              <span class="jd-card-icon" aria-hidden="true">🌟</span>
+              <div>
+                <h2 class="jd-card-title">Chúng mình tìm kiếm ai?</h2>
+                <span class="jd-card-subtitle">Yêu cầu ứng viên</span>
+              </div>
+            </div>
+            <ul class="jd-list" id="jd-yeu-cau"></ul>
+            <div class="jd-plus-box" id="jd-diem-cong-box" style="display: none;">
+              <span class="jd-plus-label">Điểm cộng:</span>
+              <span id="jd-diem-cong-text"></span>
+            </div>
+          </article>
+
+          <!-- Khối 3: Quyền lợi tại Ban (Bạn sẽ nhận được gì?) -->
+          <article class="jd-card">
+            <div class="jd-card-header">
+              <span class="jd-card-icon" aria-hidden="true">🎁</span>
+              <div>
+                <h2 class="jd-card-title">Bạn sẽ nhận được gì?</h2>
+                <span class="jd-card-subtitle">Quyền lợi tại Ban</span>
+              </div>
+            </div>
+            <ul class="jd-list" id="jd-quyen-loi"></ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         4. KHU VỰC CHỐT ĐƠN CUỐI TRANG CON
+         =================================================================== -->
+    <section class="section section-muted" aria-labelledby="ban-cta-question">
+      <div class="container">
+        <div class="ban-cta-box">
+          <h2 class="ban-cta-question" id="ban-cta-question">
+            Bạn đã sẵn sàng thử sức tại BAN TRUYỀN THÔNG?
+          </h2>
+          <button
+            type="button"
+            class="btn btn-cta ban-cta-btn js-btn-apply"
+            onclick="moDonUngTuyen(event)"
+          >
+            ĐĂNG KÝ NGUYỆN VỌNG VÀO BAN NÀY NGAY
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================================================================
+       5. CHÂN TRANG (FOOTER)
+       =================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-info">
+          <div class="footer-brand">
+            <img src="../assets/logo-clb.png" alt="Logo CLB Kỹ năng Công tác xã hội" class="footer-logo">
+            <p class="footer-unit-name">
+              CLB Kỹ năng Công tác xã hội – Đoàn khoa Công tác xã hội - Nhân học - Xã hội học, Trường ĐH KHXH&amp;NV, ĐHQG-HCM.
+            </p>
+          </div>
+
+          <ul class="footer-contact-list">
+            <li>
+              🌐 Fanpage:
+              <a
+                href="https://www.facebook.com/kynangctxh"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer-link js-link-fanpage"
+              >facebook.com/kynangctxh</a>
+            </li>
+            <li>
+              📍 Địa điểm hoạt động: Cơ sở Linh Trung (TP. Thủ Đức) &amp; Cơ sở Đinh Tiên Hoàng (Quận 1).
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-cta-card">
+          <p class="footer-cta-text">
+            "Đừng bỏ lỡ cơ hội trở thành một phần của CLB KN CTXH"
+          </p>
+          <button type="button" class="btn btn-cta js-btn-apply" onclick="moDonUngTuyen(event)">
+            ĐIỀN ĐƠN NGAY
+          </button>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 – 2027 CLB Kỹ năng Công tác xã hội – Trường ĐH KHXH&amp;NV, ĐHQG-HCM.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Nhúng các file cấu hình, dữ liệu ban và kịch bản theo đường dẫn tương đối -->
+  <script src="../js/config.js"></script>
+  <script src="../js/ban-data.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
