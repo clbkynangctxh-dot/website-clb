@@ -18,7 +18,7 @@ const CONFIG = {
   LINK_GOOGLE_FORM: "",
 
   // 2. Hạn chót đóng đơn Vòng 1 (dùng cho đồng hồ đếm ngược, múi giờ Việt Nam +07:00)
-  HAN_CHOT_VONG_1: "2026-10-17T23:59:00+07:00",
+  HAN_CHOT_VONG_1: "2026-10-25T23:59:00+07:00",
 
   // 3. Mốc thời gian 03 Vòng tuyển chọn (theo múi giờ Việt Nam +07:00)
   // Dùng để hiển thị trên thẻ lộ trình và tự động tính trạng thái:
@@ -30,8 +30,8 @@ const CONFIG = {
       thoiGianHienThi: "07/10 – 17/10/2026",
       hinhThuc: "Trực tuyến (Google Form)",
       tomTat: "Chia sẻ thông tin cá nhân, mục tiêu và nguyện vọng bằng sự chân thành, mạch lạc.",
-      batDau: "2026-10-07T00:00:00+07:00",
-      ketThuc: "2026-10-17T23:59:00+07:00"
+      batDau: "2026-10-25T00:00:00+07:00",
+      ketThuc: "2026-10-27T23:59:00+07:00"
     },
     {
       id: "vong-2",
@@ -39,8 +39,8 @@ const CONFIG = {
       thoiGianHienThi: "11/10 (Đợt 1) & 18/10/2026 (Đợt 2)",
       hinhThuc: "Trực tiếp kết hợp Trực tuyến",
       tomTat: "Trò chuyện trực tiếp cùng Ban Giám khảo để làm rõ cá tính và mức độ phù hợp.",
-      batDau: "2026-10-11T00:00:00+07:00",
-      ketThuc: "2026-10-18T23:59:59+07:00"
+      batDau: "2026-10-28T00:00:00+07:00",
+      ketThuc: "2026-10-29T23:59:59+07:00"
     },
     {
       id: "vong-3",
@@ -48,8 +48,8 @@ const CONFIG = {
       thoiGianHienThi: "19/10 – 23/10/2026",
       hinhThuc: "Trực tuyến kết hợp Trực tiếp",
       tomTat: "Phối hợp giữa 4 ban để lập kế hoạch thực tế cho chương trình giả định \"Trung thu yêu thương\".",
-      batDau: "2026-10-19T00:00:00+07:00",
-      ketThuc: "2026-10-23T23:59:59+07:00"
+      batDau: "2026-11-30T00:00:00+07:00",
+      ketThuc: "2026-10-31T23:59:59+07:00"
     }
   ],
 
