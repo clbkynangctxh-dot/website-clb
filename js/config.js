@@ -84,7 +84,7 @@ const CONFIG = {
   KHUNG_JD_BAN: {
     nhanKhiChuaCoLink: "[JD ĐANG ĐƯỢC UP LÊN]",
     nhanKhiDaCoLink: "📂 JD & Tư liệu hoạt động Ban",
-    moTa: "Khám phá những khoảnh khắc hoạt động thực tế của Ban trên thư mục lưu trữ Google Drive.",
+    moTa: "Mô tả chi tiết Ban.",
     thongBaoChuaCoLink: "[CHỜ NỘI DUNG] Đường link Google Drive của Ban này hiện đang được cập nhật!"
   },
 
