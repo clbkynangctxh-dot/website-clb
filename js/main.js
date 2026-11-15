@@ -21,6 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // 1. Khởi tạo menu 3 gạch trên điện thoại (nếu có)
   khoiTaoMenuDiDong();
 
+  // 1B. Khởi tạo khu vực ảnh bìa chương trình ở đầu Trang chủ
+  khoiTaoBiaChuongTrinh();
+
   // 2. Tạo 4 thẻ Ban chuyên môn trên Trang chủ (nếu đang ở Trang chủ)
   taoThe4BanChuyenMon();
 
@@ -169,11 +172,19 @@ function khoiTaoTrangChiTietBan() {
   if (elTitle) elTitle.textContent = ban.ten;
   if (elSlogan) elSlogan.textContent = '"' + ban.slogan + '"';
 
-  // 3. Thiết lập nút xem hình ảnh hoạt động của Ban trên Google Drive
+  // 3. Thiết lập khung link Google Drive bên ngoài của Ban (nút chỗ JD Ban)
   const elDriveBtn = document.getElementById("ban-drive-btn");
   const elDriveTag = document.getElementById("ban-drive-status");
+  const elDriveDesc = document.querySelector(".ban-media-desc");
+  const khungJdCfg =
+    typeof CONFIG !== "undefined" && CONFIG.KHUNG_JD_BAN ? CONFIG.KHUNG_JD_BAN : {};
+
+  if (elDriveDesc && khungJdCfg.moTa) {
+    elDriveDesc.textContent = khungJdCfg.moTa;
+  }
+
   if (elDriveBtn) {
-    const linkDrive =
+    const rawLinkDrive =
       typeof CONFIG !== "undefined" &&
       CONFIG.LINK_DRIVE_ANH &&
       ban.khoaDrive &&
@@ -181,20 +192,33 @@ function khoiTaoTrangChiTietBan() {
         ? CONFIG.LINK_DRIVE_ANH[ban.khoaDrive].trim()
         : "";
 
+    const linkDrive =
+      rawLinkDrive && rawLinkDrive !== "#" && !/^https?:\/\//i.test(rawLinkDrive)
+        ? "https://" + rawLinkDrive
+        : rawLinkDrive;
+
     if (linkDrive && linkDrive !== "#") {
-      if (elDriveTag) elDriveTag.textContent = "📸 Tư liệu hoạt động thực tế";
+      if (elDriveTag) {
+        elDriveTag.textContent =
+          khungJdCfg.nhanKhiDaCoLink || "📂 JD & Tư liệu hoạt động Ban";
+      }
       elDriveBtn.href = linkDrive;
       elDriveBtn.target = "_blank";
       elDriveBtn.rel = "noopener noreferrer";
     } else {
-      if (elDriveTag) elDriveTag.textContent = "[JD ĐANG ĐƯỢC UP LÊN]";
+      if (elDriveTag) {
+        elDriveTag.textContent =
+          khungJdCfg.nhanKhiChuaCoLink || "[JD ĐANG ĐƯỢC UP LÊN]";
+      }
       elDriveBtn.href = "#";
+      elDriveBtn.removeAttribute("target");
       elDriveBtn.addEventListener("click", function (e) {
         e.preventDefault();
         alert(
-          "[CHỜ NỘI DUNG] Đường link Google Drive hoạt động của " +
-            ban.ten +
-            " hiện đang được cập nhật!"
+          khungJdCfg.thongBaoChuaCoLink ||
+            "[CHỜ NỘI DUNG] Đường link Google Drive của " +
+              ban.ten +
+              " hiện đang được cập nhật!"
         );
       });
     }
@@ -812,6 +836,102 @@ function xuLyLoiPoster(imgElement) {
   if (placeholder) {
     placeholder.style.display = "flex";
   }
+}
+
+/**
+ * Hàm tải và hiển thị ảnh bìa chương trình ở đầu Trang chủ từ thư mục assets/bia-chuong-trinh/
+ */
+function khoiTaoBiaChuongTrinh() {
+  const sectionEl = document.getElementById("bia-chuong-trinh");
+  const imgEl = document.getElementById("cover-banner-img");
+  const placeholderEl = document.getElementById("cover-banner-placeholder");
+  const badgeEl = document.getElementById("cover-banner-badge");
+  const hintEl = document.getElementById("cover-banner-hint");
+
+  if (!sectionEl || !imgEl || !placeholderEl) return;
+
+  const cfg =
+    typeof CONFIG !== "undefined" && CONFIG.BIA_CHUONG_TRINH
+      ? CONFIG.BIA_CHUONG_TRINH
+      : {};
+
+  if (cfg.hienThi === false) {
+    sectionEl.style.display = "none";
+    return;
+  }
+
+  if (badgeEl && cfg.chuNhanKhungCho) {
+    badgeEl.textContent = cfg.chuNhanKhungCho;
+  }
+  if (hintEl && cfg.moTaKhungCho) {
+    hintEl.textContent = cfg.moTaKhungCho;
+  }
+  if (cfg.altAnh) {
+    imgEl.alt = cfg.altAnh;
+  }
+
+  function chuanHoaDuongDanBia(tenFile) {
+    const trimmed = String(tenFile || "").trim();
+    if (!trimmed) return "";
+    if (
+      trimmed.startsWith("http://") ||
+      trimmed.startsWith("https://") ||
+      trimmed.startsWith("assets/") ||
+      trimmed.startsWith("./assets/")
+    ) {
+      return trimmed;
+    }
+    return "assets/bia-chuong-trinh/" + trimmed;
+  }
+
+  let danhSachThu = [];
+  if (cfg.tenFileAnh && String(cfg.tenFileAnh).trim() !== "") {
+    danhSachThu.push(chuanHoaDuongDanBia(cfg.tenFileAnh));
+  } else {
+    const tenPhoBien = ["bia", "cover", "banner", "anh-bia", "anh-1", "1"];
+    const duoiPhoBien = [
+      ".jpg",
+      ".png",
+      ".jpeg",
+      ".webp",
+      ".png.jpg",
+      ".jpg.jpg",
+      ".jpg.png",
+      ".png.png"
+    ];
+    tenPhoBien.forEach(function (ten) {
+      duoiPhoBien.forEach(function (duoi) {
+        danhSachThu.push("assets/bia-chuong-trinh/" + ten + duoi);
+      });
+    });
+  }
+
+  let viTri = 0;
+  function thuAnhTiepTheo() {
+    if (viTri >= danhSachThu.length) {
+      imgEl.style.display = "none";
+      if (cfg.hienKhungChoNeuChuaCoAnh === false) {
+        sectionEl.style.display = "none";
+      } else {
+        placeholderEl.style.display = "flex";
+      }
+      return;
+    }
+
+    const duongDan = danhSachThu[viTri++];
+    const imgTest = new Image();
+    imgTest.onload = function () {
+      imgEl.src = duongDan;
+      imgEl.style.display = "block";
+      placeholderEl.style.display = "none";
+    };
+    imgTest.onerror = function () {
+      thuAnhTiepTheo();
+    };
+    imgTest.src = duongDan;
+  }
+
+  thuAnhTiepTheo();
 }
 
 /**

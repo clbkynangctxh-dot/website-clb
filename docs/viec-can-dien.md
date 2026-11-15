@@ -11,14 +11,23 @@
 ---
 
 ## 2. Mốc thời gian tuyển sinh
-* **Tình trạng:** Đang để theo kế hoạch gốc (`HAN_CHOT_VONG_1: "2026-10-17T23:59:00+07:00"`, Vòng 1: `07/10 – 17/10/2026`, Vòng 2: `11/10 & 18/10/2026`, Vòng 3: `19/10 – 23/10/2026`).
+* **Tình trạng:** Đã cập nhật theo kế hoạch mới (`HAN_CHOT_VONG_1: "2026-11-22T23:59:00+07:00"`, Vòng 1: `16/11 – 22/11/2026`, Vòng 2: `25/11 – 27/11/2026`, Vòng 3: `30/11 – 10/12/2026`).
 * **Cách điền (nếu gia hạn hoặc đổi lịch):** Sửa ngày giờ tại mục `HAN_CHOT_VONG_1` và `LO_TRINH_3_VONG` trong file `js/config.js`.
 
 ---
 
-## 3. Link Google Drive hình ảnh hoạt động của 04 Ban
-* **Tình trạng:** Trên 4 trang con trong thư mục `ban/` đã có sẵn nút *"Xem ảnh hoạt động trên Drive ➔"*. Khi chưa điền link sẽ hiện khung `[CHỜ ẢNH MINH HỌA HOẠT ĐỘNG]`.
-* **Cách điền:** Mở file `js/config.js`, dán link thư mục Google Drive của từng ban vào mục `LINK_DRIVE_ANH` (`toChuc`, `thanhVien`, `ketNoiNguonLuc`, `truyenThong`).
+## 3. Link Google Drive & Chữ khung JD của 04 Ban
+* **Tình trạng:** Trên 4 trang con trong thư mục `ban/` đã có sẵn khung link Google Drive bên ngoài (`[JD ĐANG ĐƯỢC UP LÊN]` + nút *"📂 Xem ảnh hoạt động trên Drive ➔"*).
+* **Cách điền link 4 Ban:** Mở file `js/config.js`, dán link Google Drive của từng ban vào mục `LINK_DRIVE_ANH` (`toChuc`, `thanhVien`, `ketNoiNguonLuc`, `truyenThong`).
+* **Cách sửa chữ nút & nhãn chỗ JD Ban:**
+  * Sửa chữ trên nút bấm tại mục `CHU_NUT_BAM.nutXemDrive` trong `js/config.js`.
+  * Sửa nhãn trạng thái (`nhanKhiChuaCoLink`, `nhanKhiDaCoLink`), dòng mô tả (`moTa`) và thông báo khi chưa có link tại mục `KHUNG_JD_BAN` trong `js/config.js`.
+
+---
+
+## 3B. Ảnh bìa chương trình ở đầu Trang chủ
+* **Vị trí thư mục:** `assets/bia-chuong-trinh/`
+* **Cách bỏ ảnh:** Bỏ ảnh bìa vào thư mục `assets/bia-chuong-trinh/` và đặt tên `bia.jpg` / `bia.png` (hoặc điền tên file vào `BIA_CHUONG_TRINH.tenFileAnh` trong `js/config.js`). Có thể chỉnh hoặc tắt khung chờ tại mục `BIA_CHUONG_TRINH` trong `js/config.js`.
 
 ---
 

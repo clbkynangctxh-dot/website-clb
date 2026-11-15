@@ -1,0 +1,13 @@
+HƯỚNG DẪN BỎ ẢNH BÌA VÀO THƯ MỤC NÀY (assets/bia-chuong-trinh/)
+=================================================================
+
+Cách 1 (Đơn giản nhất - Không cần sửa file nào):
+- Bạn chỉ cần chép 01 file ảnh bìa chương trình vào thư mục này và đặt tên là:
+  bia.jpg hoặc bia.png (cũng nhận cover.jpg, cover.png, anh-1.jpg, anh-1.png)
+- Trang web sẽ tự động tìm và hiển thị ảnh bìa lên khu vực trên đầu Trang chủ!
+
+Cách 2 (Giữ nguyên tên file ảnh bất kỳ):
+- Bạn chép ảnh bìa vào thư mục này.
+- Mở file js/config.js bằng Notepad, tìm mục BIA_CHUONG_TRINH -> tenFileAnh
+  và điền chính xác tên file ảnh vào trong dấu ngoặc kép, ví dụ:
+  tenFileAnh: "bia-chuong-trinh-2026.png",

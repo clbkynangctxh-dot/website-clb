@@ -36,7 +36,7 @@ const CONFIG = {
     {
       id: "vong-2",
       tenVong: "VÒNG 2: PHỎNG VẤN",
-      thoiGianHienThi: "25/11 - 27/11/2026",
+      thoiGianHienThi: "25/11 – 27/11/2026",
       hinhThuc: "Trực tiếp kết hợp Trực tuyến",
       tomTat: "Trò chuyện trực tiếp cùng Ban Giám khảo để làm rõ cá tính và mức độ phù hợp.",
       batDau: "2026-11-25T00:00:00+07:00",
@@ -69,12 +69,36 @@ const CONFIG = {
   // 7. Đường link hộp thư Messenger Fanpage (dùng cho nút "Đặt câu hỏi")
   LINK_MESSENGER: "https://m.me/kynangctxh",
 
-  // 8. Đường link Google Drive xem hình ảnh hoạt động của 4 Ban
+  // 8. ĐƯỜNG LINK GOOGLE DRIVE BÊN NGOÀI CỦA 4 BAN (dùng cho nút ở khung JD Ban trên các trang con)
+  // Dán link Google Drive (chứa JD hoặc hình ảnh/tư liệu của Ban) vào giữa dấu ngoặc kép "" bên dưới.
+  // Khi bấm nút ở khung JD Ban, trang web sẽ mở đường link này sang tab mới.
   LINK_DRIVE_ANH: {
-    toChuc: "",         // Link Drive ảnh hoạt động Ban Tổ chức chương trình
-    thanhVien: "",      // Link Drive ảnh hoạt động Ban Thành viên & PTNL
-    ketNoiNguonLuc: "", // Link Drive ảnh hoạt động Ban Kết nối nguồn lực
-    truyenThong: ""     // Link Drive ảnh hoạt động Ban Truyền thông
+    toChuc: "",         // Link Drive Ban Tổ chức chương trình
+    thanhVien: "",      // Link Drive Ban Thành viên & PTNL
+    ketNoiNguonLuc: "", // Link Drive Ban Kết nối nguồn lực
+    truyenThong: ""     // Link Drive Ban Truyền thông
+  },
+
+  // 8B. TÙY CHỈNH CHỮ HIỂN THỊ TRONG KHUNG LINK DRIVE / JD BAN (TRÊN 4 TRANG CON)
+  // Bạn có thể tự do sửa chữ nhãn, dòng mô tả và thông báo khi chưa điền link:
+  KHUNG_JD_BAN: {
+    nhanKhiChuaCoLink: "[JD ĐANG ĐƯỢC UP LÊN]",
+    nhanKhiDaCoLink: "📂 JD & Tư liệu hoạt động Ban",
+    moTa: "Khám phá những khoảnh khắc hoạt động thực tế của Ban trên thư mục lưu trữ Google Drive.",
+    thongBaoChuaCoLink: "[CHỜ NỘI DUNG] Đường link Google Drive của Ban này hiện đang được cập nhật!"
+  },
+
+  // 8C. ẢNH BÌA CHƯƠNG TRÌNH Ở TRÊN ĐẦU TRANG CHỦ (thư mục: assets/bia-chuong-trinh/)
+  // - Cách 1 (Tự động): Bỏ 1 ảnh vào thư mục "assets/bia-chuong-trinh/" và đặt tên bia.jpg hoặc bia.png (cũng nhận cover.jpg, cover.png, anh-1.jpg...), web sẽ tự hiện.
+  // - Cách 2 (Tên bất kỳ): Nếu ảnh có tên riêng, điền đúng tên file vào dòng tenFileAnh bên dưới (ví dụ: "bia-chuong-trinh.png").
+  BIA_CHUONG_TRINH: {
+    hienThi: true, // true = bật khu vực ảnh bìa ở đầu trang, false = ẩn hoàn toàn
+    tenFileAnh: "",
+    hienKhungChoNeuChuaCoAnh: true, // true = hiện khung nhắc chỗ bỏ ảnh khi thư mục còn trống
+    chuNhanKhungCho: "[CHỜ ẢNH BÌA CHƯƠNG TRÌNH]",
+    moTaKhungCho:
+      'Bạn hãy bỏ ảnh bìa chương trình vào thư mục assets/bia-chuong-trinh/ (đặt tên bia.jpg / bia.png hoặc điền tên file vào mục BIA_CHUONG_TRINH trong js/config.js) để hiển thị tại đây.',
+    altAnh: "Ảnh bìa Chương trình Tuyển thành viên CLB Kỹ năng Công tác xã hội năm học 2026 – 2027"
   },
 
   // 9. THÔNG TIN CHÂN TRANG & GHI CHÚ ĐÁY TRANG (FOOTER / FOOTNOTE)
@@ -146,7 +170,7 @@ const CONFIG = {
     // Nút quay lại trang chủ (trên các trang con của từng Ban)
     nutQuayVeTrangChu: "← Quay về Trang chủ",
 
-    // Nút xem ảnh Drive (trên các trang con của từng Ban)
+    // Nút mở link Drive bên ngoài trong khung JD Ban (trên các trang con của từng Ban)
     nutXemDrive: "📂 Xem ảnh hoạt động trên Drive ➔",
 
     // Nút lớn chốt đơn ở cuối mỗi trang con của từng Ban
