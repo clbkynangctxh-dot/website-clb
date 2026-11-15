@@ -15,7 +15,7 @@ const CONFIG = {
 
   // 1. Đường link Google Form nộp đơn Vòng 1
   // Nếu để trống (""), khi bấm nút "Ứng tuyển ngay" trang web sẽ hiện thông báo "[CHỜ NỘI DUNG]"
-  LINK_GOOGLE_FORM: "",
+  LINK_GOOGLE_FORM: "https://forms.gle/FzJE4ysjMuZqJtuU6",
 
   // 2. Hạn chót đóng đơn Vòng 1 (dùng cho đồng hồ đếm ngược, múi giờ Việt Nam +07:00)
   HAN_CHOT_VONG_1: "2026-11-22T23:59:00+07:00",
@@ -73,10 +73,10 @@ const CONFIG = {
   // Dán link Google Drive (chứa JD hoặc hình ảnh/tư liệu của Ban) vào giữa dấu ngoặc kép "" bên dưới.
   // Khi bấm nút ở khung JD Ban, trang web sẽ mở đường link này sang tab mới.
   LINK_DRIVE_ANH: {
-    toChuc: "",         // Link Drive Ban Tổ chức chương trình
-    thanhVien: "",      // Link Drive Ban Thành viên & PTNL
-    ketNoiNguonLuc: "", // Link Drive Ban Kết nối nguồn lực
-    truyenThong: ""     // Link Drive Ban Truyền thông
+    toChuc: "https://drive.google.com/file/d/10W3rl87VMIHRjnPdQHi-Qnb-sMhBmAOf/view?usp=sharing",         // Link Drive Ban Tổ chức chương trình
+    thanhVien: "https://drive.google.com/file/d/1Mh9oKdj9jc0xgGTS5yQDYEw3ocIEfxY8/view?usp=sharing",      // Link Drive Ban Thành viên & PTNL
+    ketNoiNguonLuc: "https://drive.google.com/file/d/1Bu6o0wzhb0fSZTMxTXPiPxQXPahWLlu3/view?usp=sharing", // Link Drive Ban Kết nối nguồn lực
+    truyenThong: "https://drive.google.com/file/d/1UVNH4QYVCezzFDe3hPkeM4BliNIXnmmr/view?usp=sharing"     // Link Drive Ban Truyền thông
   },
 
   // 8B. TÙY CHỈNH CHỮ HIỂN THỊ TRONG KHUNG LINK DRIVE / JD BAN (TRÊN 4 TRANG CON)
